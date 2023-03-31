@@ -19,22 +19,22 @@ const Quiz = () => {
               Quiz 1 - What is a Debounce function in JavaScript?
             </h4>
             <form className="quizOptions">
-              <label for="option1_q1">
+              <label htmlFor="option1_q1">
                 <input type="checkbox" id="option1_q1" />A function that is
                 called after a certain time interval
               </label>
 
-              <label for="option2_q1">
+              <label htmlFor="option2_q1">
                 <input type="checkbox" id="option2_q1" />A function that is
                 called after a certain time interval
               </label>
 
-              <label for="option3_q1">
+              <label htmlFor="option3_q1">
                 <input type="checkbox" id="option3_q1" />A function that is
                 called after a certain time interval
               </label>
 
-              <label for="option4_q1">
+              <label htmlFor="option4_q1">
                 <input type="checkbox" id="option4_q1" />A function that is
                 called after a certain time interval
               </label>
@@ -47,22 +47,22 @@ const Quiz = () => {
               you would use the Debounce function?
             </h4>
             <form className="quizOptions">
-              <label for="option1_q2">
+              <label htmlFor="option1_q2">
                 <input type="checkbox" id="option1_q2" />A search bar where the
                 results are displayed as you type.
               </label>
 
-              <label for="option2_q2">
+              <label htmlFor="option2_q2">
                 <input type="checkbox" id="option2_q2" />A button that performs
                 an action when clicked.
               </label>
 
-              <label for="option3_q2">
+              <label htmlFor="option3_q2">
                 <input type="checkbox" id="option3_q2" />
                 An animation that plays when a user hovers over an element.
               </label>
 
-              <label for="option4_q2">
+              <label htmlFor="option4_q2">
                 <input type="checkbox" id="option4_q2" />
                 All of the above.
               </label>

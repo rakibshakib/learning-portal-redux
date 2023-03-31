@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../asset/image/learningportal.svg";
 
 const StudentNav = () => {
@@ -7,7 +8,7 @@ const StudentNav = () => {
       <div className="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
         <img className="h-10" src={logo} alt="." />
         <div className="flex items-center gap-3">
-          <a href="./Leaderboard.html">Leaderboard</a>
+          <Link to="/leaderboard">Leaderboard</Link>
           <h2 className="font-medium">Saad Hasan</h2>
           <button className="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium">
             <svg

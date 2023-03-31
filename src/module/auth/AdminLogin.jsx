@@ -23,7 +23,7 @@ const AdminLogin = () => {
                 id="email-address"
                 name="email"
                 type="email"
-                autocomplete="email"
+                autoComplete="email"
                 required
                 className="login-input rounded-t-md"
                 placeholder="Email address"
@@ -37,7 +37,7 @@ const AdminLogin = () => {
                 id="password"
                 name="password"
                 type="password"
-                autocomplete="current-password"
+                autoComplete="current-password"
                 required
                 className="login-input rounded-b-md"
                 placeholder="Password"

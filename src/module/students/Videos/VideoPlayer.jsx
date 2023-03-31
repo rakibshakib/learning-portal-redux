@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const VideoPlayer = () => {
   return (
@@ -8,9 +9,9 @@ const VideoPlayer = () => {
         className="aspect-video"
         src="https://www.youtube.com/embed/56zUkaXJnUA"
         title="Things I wish I knew as a Junior Web Developer - Sumit Saha - BASIS SoftExpo 2023"
-        frameborder="0"
+        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
 
       <div>
@@ -30,12 +31,12 @@ const VideoPlayer = () => {
             এসাইনমেন্ট
           </a>
 
-          <a
-            href="./Quiz.html"
+          <Link
+            to="/quiz/1"
             className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
           >
             কুইজে অংশগ্রহণ করুন
-          </a>
+          </Link>
         </div>
         <p className="mt-4 text-sm text-slate-400 leading-6">
           আপনারা যারা বিগিনার হিসেবে রিয়্যাক্ট জেস নিয়ে কাজ করা শুরু করেছেন,

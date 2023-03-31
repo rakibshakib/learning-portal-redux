@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import loginPortalImage from "../../asset/image/learningportal.svg";
 
 const StudentLogin = () => {
@@ -22,7 +23,7 @@ const StudentLogin = () => {
                 id="email-address"
                 name="email"
                 type="email"
-                autocomplete="email"
+                autoComplete="email"
                 required
                 className="login-input rounded-t-md"
                 placeholder="Email address"
@@ -36,7 +37,7 @@ const StudentLogin = () => {
                 id="password"
                 name="password"
                 type="password"
-                autocomplete="current-password"
+                autoComplete="current-password"
                 required
                 className="login-input rounded-b-md"
                 placeholder="Password"
@@ -46,12 +47,12 @@ const StudentLogin = () => {
 
           <div className="flex items-center justify-end">
             <div className="text-sm">
-              <a
-                href="./StudentReistration.html"
+              <Link
+                to="/register"
                 className="font-medium text-violet-600 hover:text-violet-500"
               >
                 Create New Account
-              </a>
+              </Link>
             </div>
           </div>
 

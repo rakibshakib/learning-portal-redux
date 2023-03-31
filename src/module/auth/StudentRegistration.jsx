@@ -22,7 +22,7 @@ const StudentRegistration = () => {
                 id="name"
                 name="name"
                 type="name"
-                autocomplete="name"
+                autoComplete="name"
                 required
                 className="login-input rounded-t-md"
                 placeholder="Student Name"
@@ -36,7 +36,7 @@ const StudentRegistration = () => {
                 id="email-address"
                 name="email"
                 type="email"
-                autocomplete="email"
+                autoComplete="email"
                 required
                 className="login-input "
                 placeholder="Email address"
@@ -50,7 +50,7 @@ const StudentRegistration = () => {
                 id="password"
                 name="password"
                 type="password"
-                autocomplete="current-password"
+                autoComplete="current-password"
                 required
                 className="login-input"
                 placeholder="Password"
@@ -64,7 +64,7 @@ const StudentRegistration = () => {
                 id="confirm-password"
                 name="confirm-password"
                 type="password"
-                autocomplete="confirm-password"
+                autoComplete="confirm-password"
                 required
                 className="login-input rounded-b-md"
                 placeholder="Confirm Password"
