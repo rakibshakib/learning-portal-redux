@@ -6,7 +6,7 @@ import { pageReturn } from "./routes/helper";
 
 function App() {
   const { isAuth, isAdmin } = useSelector((state) => state?.users?.profile);
-  // console.log(profile);
+  
   return (
     <div className="App">
       <BrowserRouter>

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   profile: {
     isAuth: true,
-    isAdmin: false,
+    isAdmin: true,
     userName: "",
   },
 };
