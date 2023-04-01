@@ -9,6 +9,7 @@ import { setProfile } from "./features/users/userSlice";
 function App() {
   const { isAuth, isAdmin } = useSelector((state) => state?.profile);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     const localAuth = localStorage?.getItem("auth");
     if (localAuth) {
@@ -23,7 +24,7 @@ function App() {
       }
     }
   }, [dispatch]);
-  
+
   return (
     <div className="App">
       <BrowserRouter>

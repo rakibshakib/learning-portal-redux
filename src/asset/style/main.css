@@ -697,7 +697,8 @@ video {
 }
 
 .justify-end {
-  justify-content: flex-end;
+  display: flex;
+  justify-content: end !important;
 }
 
 .justify-center {
