@@ -1,7 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import loginPortalImage from "../../asset/image/learningportal.svg";
+import { useRegisterMutation } from "../../features/auth/authSlice";
 
 const StudentRegistration = () => {
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    name: "LWS Admin",
+    // id: 1,
+  });
+  const navigate = useNavigate();
+  const [register, { isSuccess, isError, error }] = useRegisterMutation();
+  const handleSetter = (e) => {
+    setLoginData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (loginData.password !== loginData.confirmPassword) {
+      return toast.warn("Password doesn't match");
+    }
+    const payload = {
+      email: loginData?.email,
+      password: loginData?.password,
+      name: loginData?.name,
+      id: Date.now(),
+      role: "student",
+    };
+    register(payload);
+  };
+
+  useEffect(() => {
+    isSuccess && toast.success("Registration Successfully");
+    isSuccess && navigate("/");
+    isError && toast.warn(`Registration Failed ${error?.data}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError, error]);
   return (
     <section className="py-6 bg-primary h-screen grid place-items-center">
       <div className="mx-auto max-w-md px-5 lg:px-0">
@@ -11,7 +50,7 @@ const StudentRegistration = () => {
             Create Your New Account
           </h2>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -26,6 +65,8 @@ const StudentRegistration = () => {
                 required
                 className="login-input rounded-t-md"
                 placeholder="Student Name"
+                value={loginData?.name}
+                onChange={(e) => handleSetter(e)}
               />
             </div>
             <div>
@@ -40,6 +81,8 @@ const StudentRegistration = () => {
                 required
                 className="login-input "
                 placeholder="Email address"
+                value={loginData?.email}
+                onChange={(e) => handleSetter(e)}
               />
             </div>
             <div>
@@ -54,6 +97,8 @@ const StudentRegistration = () => {
                 required
                 className="login-input"
                 placeholder="Password"
+                value={loginData?.password}
+                onChange={(e) => handleSetter(e)}
               />
             </div>
             <div>
@@ -62,12 +107,14 @@ const StudentRegistration = () => {
               </label>
               <input
                 id="confirm-password"
-                name="confirm-password"
+                name="confirmPassword"
                 type="password"
                 autoComplete="confirm-password"
                 required
                 className="login-input rounded-b-md"
                 placeholder="Confirm Password"
+                value={loginData?.confirmPassword}
+                onChange={(e) => handleSetter(e)}
               />
             </div>
           </div>

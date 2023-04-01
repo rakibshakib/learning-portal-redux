@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/counterSlice";
+import { rootAPI } from "../features/apiSlice";
 import userSilce from "../features/users/userSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    users: userSilce,
+    [rootAPI.reducerPath]: rootAPI.reducer,
+    profile: userSilce,
+  },
+  middleware: (dflt) => {
+    return dflt().concat(rootAPI.middleware);
   },
 });

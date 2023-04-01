@@ -1,16 +1,29 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../asset/image/learningportal.svg";
+import { logOutProfile } from "../features/users/userSlice";
 
 const StudentNav = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOutProfile());
+    localStorage.clear();
+  };
   return (
     <nav className="shadow-md">
       <div className="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
-        <img className="h-10" src={logo} alt="." />
+        <Link to="/">
+          <img className="h-10" src={logo} alt="." />
+        </Link>
         <div className="flex items-center gap-3">
           <Link to="/leaderboard">Leaderboard</Link>
           <h2 className="font-medium">Saad Hasan</h2>
-          <button className="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium">
+          <button
+            onClick={handleLogout}
+            className="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

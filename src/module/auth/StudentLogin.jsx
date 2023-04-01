@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import loginPortalImage from "../../asset/image/learningportal.svg";
+import { useLoginMutation } from "../../features/auth/authSlice";
 
 const StudentLogin = () => {
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+  const [login, { isSuccess, isError }] = useLoginMutation();
+  const handleSetter = (e) => {
+    setLoginData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(loginData);
+  };
+  useEffect(() => {
+    isSuccess && toast.success("Login Successfull");
+    isError && toast.warn("Login Failed");
+  }, [isSuccess, isError]);
   return (
     <section className="py-6 bg-primary h-screen grid place-items-center">
       <div className="mx-auto max-w-md px-5 lg:px-0">
@@ -12,7 +33,7 @@ const StudentLogin = () => {
             Sign in to Student Account
           </h2>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -27,6 +48,8 @@ const StudentLogin = () => {
                 required
                 className="login-input rounded-t-md"
                 placeholder="Email address"
+                value={loginData?.email}
+                onChange={(e) => handleSetter(e)}
               />
             </div>
             <div>
@@ -41,6 +64,8 @@ const StudentLogin = () => {
                 required
                 className="login-input rounded-b-md"
                 placeholder="Password"
+                value={loginData?.password}
+                onChange={(e) => handleSetter(e)}
               />
             </div>
           </div>
