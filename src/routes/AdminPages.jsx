@@ -6,6 +6,7 @@ import FormAssignments from "../module/Admin/Assignment/FormAssignments";
 import AssignmentsMarks from "../module/Admin/Assignment/Marks";
 import Dashboard from "../module/Admin/Dashboard";
 import Quizzes from "../module/Admin/Quizzes";
+import QuizzesForm from "../module/Admin/Quizzes/QuizzesForm";
 import VideoList from "../module/Admin/Videos";
 import CreateEditVideo from "../module/Admin/Videos/CreateEditVideo";
 
@@ -20,6 +21,8 @@ const AdminPages = () => {
         <Route path="/admin/add-video" element={<CreateEditVideo />}></Route>
         <Route path="/admin/:type/:id" element={<CreateEditVideo />}></Route>
         <Route path="/admin/quizzes" element={<Quizzes />}></Route>
+        <Route path="/admin/add-quizzes" element={<QuizzesForm />}></Route>
+        <Route path="/admin/quizzes/:type/:id" element={<QuizzesForm />}></Route>
 
         <Route path="/admin/assignment" element={<Assignment />}></Route>
         <Route

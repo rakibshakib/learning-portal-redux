@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import ConfirmModal from "../../../common/ConfirmModal";
 import Loading from "../../../common/Loading";
-import { useGetAssignmentsQuery } from "../../../features/admin/assignmentsApi";
+import {
+  useDeleteAssignmentMutation,
+  useGetAssignmentsQuery,
+} from "../../../features/admin/assignmentsApi";
 
 const Assignment = () => {
   const { data: assignments, isLoading } = useGetAssignmentsQuery();
   const navigate = useNavigate();
+  const [
+    deleteAssignment,
+    { isSuccess: deleteSuccess, isLoading: deleteLoading, isError },
+  ] = useDeleteAssignmentMutation();
+
+  useEffect(() => {
+    deleteSuccess && toast.success("Assignment Deleted Successfully");
+    isError && toast.warn("Assignment Deleting Failed");
+  }, [deleteSuccess, isError]);
+  
   return (
     <section className="py-6 bg-primary">
-      {isLoading && <Loading />}
+      {(isLoading || deleteLoading) && <Loading />}
       <div className="mx-auto max-w-full px-5 lg:px-20">
         <div className="px-3 py-20 bg-opacity-10">
           <div className="flex justify-end">
@@ -47,7 +61,7 @@ const Assignment = () => {
                         <ConfirmModal
                           text="Are You Sure want to delte this Assignment"
                           confirm={() => {
-                            // deleteVideo(video.id);
+                            deleteAssignment(assignment.id);
                           }}
                         >
                           <svg
