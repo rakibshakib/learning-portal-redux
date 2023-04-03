@@ -32,7 +32,7 @@ const QuizzesForm = () => {
     {
       id: Date.now(),
       option: "",
-      isCorrect: true,
+      isCorrect: false,
     },
   ]);
 
@@ -44,6 +44,13 @@ const QuizzesForm = () => {
       video_title: "",
       totalMark: 100,
     });
+    setOptions([
+      {
+        id: Date.now(),
+        option: "",
+        isCorrect: false,
+      },
+    ]);
   };
   const handleField = (e) => {
     setQuizzeState((prev) => ({
@@ -53,34 +60,46 @@ const QuizzesForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (type === "edit-assignment") {
-      const payload = {
-        ...quizzeState,
-        totalMark: +quizzeState.totalMark,
-        id: id,
-      };
+    const checkTrueOption = options.some((opt) => opt.isCorrect);
+    if (!checkTrueOption) {
+      return toast.warn("At Least One Option Must Be Correct Ans");
+    }
+    if (options.length < 2) {
+      return toast.warn("Minimum Two Option Required");
+    }
+    const payload = {
+      id: Date.now(),
+      question: quizzeState?.question,
+      video_id: quizzeState?.video_id,
+      video_title: quizzeState?.video_title,
+      options,
+    };
+    if (type === "edit-quiz") {
       edit({
         id: id || quizze?.id,
         data: payload,
       });
     } else {
-      const payload = {
-        ...quizzeState,
-        totalMark: +quizzeState.totalMark,
-        id: Date.now(),
-      };
       save(payload);
+      resetForm();
     }
   };
   useEffect(() => {
-    if (type === "edit-assignment") {
+    if (type === "edit-quiz") {
       setIsReq(false);
     }
   }, [type, id]);
 
   useEffect(() => {
     if (id && quizze?.id) {
-      setQuizzeState(quizze);
+      setQuizzeState((prev) => ({
+        ...prev,
+        id: quizze?.id,
+        question: quizze?.question,
+        video_id: quizze?.video_id,
+        video_title: quizze?.video_title,
+      }));
+      setOptions(quizze?.options);
     }
   }, [quizze, id]);
 
@@ -174,7 +193,7 @@ const QuizzesForm = () => {
                       {
                         id: Date.now(),
                         option: "",
-                        isCorrect: true,
+                        isCorrect: false,
                       },
                     ]);
                   }}
@@ -191,25 +210,49 @@ const QuizzesForm = () => {
                     <div className="flex items-center justify-between w-1/2">
                       <input
                         id="question"
-                        name="question"
+                        name="option"
                         type="text"
                         required
                         className="login-input rounded-t-md inline-block"
                         placeholder="question"
-                        value={quizzeState?.question}
-                        onChange={(e) => handleField(e)}
+                        value={opt?.option}
+                        onChange={(e) => {
+                          const modified = options.map((op) => {
+                            if (opt.id === op.id) {
+                              return {
+                                ...op,
+                                option: e?.target?.value,
+                              };
+                            } else {
+                              return op;
+                            }
+                          });
+                          setOptions(modified);
+                        }}
                       />
 
                       <input
                         id="question"
                         name="question"
                         type="checkbox"
-                        required
+                        // required
                         className="rounded-t-md mx-3 inline-block"
                         placeholder="question"
-                        //   value={quizzeState?.question}
-                        //   checked={false}
-                        //   onChange={(e) => handleField(e)}
+                        value={opt?.isCorrect}
+                        checked={opt?.isCorrect}
+                        onChange={(e) => {
+                          const modified = options.map((op) => {
+                            if (opt.id === op.id) {
+                              return {
+                                ...op,
+                                isCorrect: e.target.checked,
+                              };
+                            } else {
+                              return op;
+                            }
+                          });
+                          setOptions(modified);
+                        }}
                       />
                       <label className="w-10 inline-block" htmlFor="question">
                         Is Correct?{" "}
@@ -219,7 +262,10 @@ const QuizzesForm = () => {
                       type="button"
                       className="btn ml-5"
                       onClick={() => {
-                        console.log(opt?.id);
+                        const modified = options.filter(
+                          (op) => op?.id !== opt?.id
+                        );
+                        setOptions(modified);
                       }}
                     >
                       Remove

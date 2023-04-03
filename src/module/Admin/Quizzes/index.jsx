@@ -56,7 +56,7 @@ const Quizzes = () => {
                       <td className="table-td">{quiz?.video_title}</td>
                       <td className="table-td flex gap-x-2 justify-center">
                         <ConfirmModal
-                          text="Are You Sure want to delte this Assignment"
+                          text="Are You Sure want to delte this quizzes?"
                           confirm={() => {
                             deleteQuizzes(quiz.id);
                           }}
