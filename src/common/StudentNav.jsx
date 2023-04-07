@@ -1,11 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../asset/image/learningportal.svg";
 import { logOutProfile } from "../features/users/userSlice";
 
 const StudentNav = () => {
   const dispatch = useDispatch();
+  const { email, name } = useSelector((state) => state?.profile?.user);
 
   const handleLogout = () => {
     dispatch(logOutProfile());
@@ -19,7 +20,7 @@ const StudentNav = () => {
         </Link>
         <div className="flex items-center gap-3">
           <Link to="/leaderboard">Leaderboard</Link>
-          <h2 className="font-medium">Saad Hasan</h2>
+          <h2 className="font-medium">{name}</h2>
           <button
             onClick={handleLogout}
             className="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium"

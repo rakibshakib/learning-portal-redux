@@ -1,14 +1,16 @@
 import React from "react";
+import { useGetQuizzesByIdQuery } from "../../../features/student/studentApi";
+import { useParams } from "react-router-dom";
 
 const Quiz = () => {
+  const { videoId } = useParams();
+  const { data: videoQuize } = useGetQuizzesByIdQuery(videoId);
+  console.log(videoQuize);
   return (
     <section className="py-6 bg-primary">
       <div className="mx-auto max-w-7xl px-5 lg:px-0">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold">
-            Quizzes for "Debounce Function in JavaScript - JavaScript Job
-            Interview question"
-          </h1>
+          <h1 className="text-2xl font-bold">Quizzes for: {videoQuize?.[0]?.video_title}</h1>
           <p className="text-sm text-slate-200">
             Each question contains 5 Mark
           </p>
