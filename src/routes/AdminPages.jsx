@@ -22,8 +22,10 @@ const AdminPages = () => {
         <Route path="/admin/:type/:id" element={<CreateEditVideo />}></Route>
         <Route path="/admin/quizzes" element={<Quizzes />}></Route>
         <Route path="/admin/add-quizzes" element={<QuizzesForm />}></Route>
-        <Route path="/admin/quizzes/:type/:id" element={<QuizzesForm />}></Route>
-
+        <Route
+          path="/admin/quizzes/:type/:id"
+          element={<QuizzesForm />}
+        ></Route>
         <Route path="/admin/assignment" element={<Assignment />}></Route>
         <Route
           path="/admin/assignment/add-assignment"
@@ -33,7 +35,6 @@ const AdminPages = () => {
           path="/admin/assignment/:type/:id"
           element={<FormAssignments />}
         ></Route>
-        
         <Route path="/admin/marks" element={<AssignmentsMarks />}></Route>
       </Routes>
     </>
