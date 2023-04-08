@@ -84,7 +84,7 @@ const CreateEditVideo = () => {
   useEffect(() => {
     if (addSuccess) {
       resetForm();
-      return toast.success("New Video Added");
+      toast.success("New Video Added");
     }
     editSuccess && toast.success("Video Edited Successfully");
   }, [addSuccess, editSuccess]);

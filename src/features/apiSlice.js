@@ -5,6 +5,6 @@ export const rootAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:9000",
   }),
-  tagTypes: [],
+  tagTypes: ["isSubmitted"],
   endpoints: (builder) => ({}),
 });

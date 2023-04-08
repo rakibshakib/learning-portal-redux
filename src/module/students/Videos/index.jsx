@@ -13,7 +13,6 @@ const CourseVideos = () => {
       setCurrentVideo(videos?.[0]);
     }
   }, [videos]);
-  console.log({ currentVideo });
   return (
     <section className="py-6 bg-primary">
       {isLoading && <Loading />}

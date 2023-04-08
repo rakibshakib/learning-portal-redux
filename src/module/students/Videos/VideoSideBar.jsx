@@ -35,11 +35,11 @@ const VideoSideBar = ({ objProps }) => {
               />
             </svg>
             <div clas="flex flex-col w-full">
-              <p >
+              
                 <p className="text-slate-50 text-sm font-medium">
                   {vid?.title}
                 </p>
-              </p>
+            
               <div>
                 <span className="text-gray-400 text-xs mt-1">34.5 Mins</span>
                 <span className="text-gray-400 text-xs mt-1"> | </span>

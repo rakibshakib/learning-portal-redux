@@ -1,80 +1,168 @@
-import React from "react";
-import { useGetQuizzesByIdQuery } from "../../../features/student/studentApi";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  useAddQuizMarkMutation,
+  useGetAllQuizeMarkVideoIdQuery,
+  useGetQuizzesByIdQuery,
+} from "../../../features/student/studentApi";
+import { useNavigate, useParams } from "react-router-dom";
+import { calculateScore } from "./utils";
+import { useSelector } from "react-redux";
+import Loading from "../../../common/Loading";
 
 const Quiz = () => {
   const { videoId } = useParams();
+  const { data: prevMarks } = useGetAllQuizeMarkVideoIdQuery(videoId);
+  const { email, name, id } = useSelector((state) => state?.profile?.user);
+
   const { data: videoQuize } = useGetQuizzesByIdQuery(videoId);
-  console.log(videoQuize);
+  const [selectedArr, setSelectedArr] = useState([]);
+  const [selectedOption, setselectedOption] = useState([]);
+  const [saveQuize, { isLoading, isSuccess, data: result }] =
+    useAddQuizMarkMutation();
+
+  const optionHandeler = (isChecked, quiz, option) => {
+    if (isChecked) {
+      if (selectedArr?.length === 0) {
+        const obj = {
+          id: quiz.id,
+          question: quiz.question,
+          selected: [option],
+        };
+        setSelectedArr([obj]);
+      } else {
+        const index = selectedArr.findIndex((obj) => obj?.id === quiz?.id);
+        if (index !== -1) {
+          selectedArr[index] = {
+            ...selectedArr[index],
+            selected: [...selectedArr[index]?.selected, option],
+          };
+        } else {
+          const obj = {
+            id: quiz.id,
+            question: quiz.question,
+            selected: [option],
+          };
+          selectedArr.push(obj);
+        }
+      }
+      setselectedOption([...selectedOption, option]);
+    } else {
+      const index = selectedArr.findIndex((obj) => obj?.id === quiz?.id);
+      const removedOpt = selectedArr[index]?.selected.findIndex(
+        (obj) => obj?.id === option?.id
+      );
+      selectedArr[index]?.selected.splice(removedOpt, 1);
+      if (selectedArr[index]?.selected?.length === 0) {
+        selectedArr.splice(index, 1);
+      }
+      const filter = selectedOption.filter((o) => o.id !== option.id);
+      setselectedOption(filter);
+    }
+  };
+  const onSubmitQuize = () => {
+    const correctAnsQuiz = videoQuize.map((quiz) => {
+      return {
+        id: quiz?.id,
+        question: quiz?.question,
+        options: quiz.options.filter((item) => item?.isCorrect),
+      };
+    });
+
+    const { correctCount, score, wrongCount } = calculateScore(
+      correctAnsQuiz,
+      selectedArr
+    );
+    console.log({ correctCount, score, wrongCount });
+    const payload = {
+      id: Date.now(),
+      student_id: id,
+      student_name: name,
+      video_id: videoQuize?.[0]?.video_id,
+      video_title: videoQuize?.[0]?.video_title,
+      totalQuiz: videoQuize?.length,
+      totalCorrect: correctCount,
+      totalWrong: wrongCount,
+      totalMark: videoQuize?.length * 5,
+      mark: score,
+    };
+    saveQuize(payload);
+  };
+  console.log(videoQuize, result);
+  const navigate = useNavigate();
+
   return (
     <section className="py-6 bg-primary">
+      {isLoading && <Loading />}
       <div className="mx-auto max-w-7xl px-5 lg:px-0">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold">Quizzes for: {videoQuize?.[0]?.video_title}</h1>
-          <p className="text-sm text-slate-200">
-            Each question contains 5 Mark
-          </p>
-        </div>
-        <div className="space-y-8 ">
-          <div className="quiz">
-            <h4 className="question">
-              Quiz 1 - What is a Debounce function in JavaScript?
-            </h4>
-            <form className="quizOptions">
-              <label htmlFor="option1_q1">
-                <input type="checkbox" id="option1_q1" />A function that is
-                called after a certain time interval
-              </label>
-
-              <label htmlFor="option2_q1">
-                <input type="checkbox" id="option2_q1" />A function that is
-                called after a certain time interval
-              </label>
-
-              <label htmlFor="option3_q1">
-                <input type="checkbox" id="option3_q1" />A function that is
-                called after a certain time interval
-              </label>
-
-              <label htmlFor="option4_q1">
-                <input type="checkbox" id="option4_q1" />A function that is
-                called after a certain time interval
-              </label>
-            </form>
+        <div className="mb-8 flex justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">
+              Quizzes for: {videoQuize?.[0]?.video_title}
+            </h1>
+            <p className="text-sm text-slate-200">
+              Each question contains 5 Mark
+            </p>
           </div>
-
-          <div className="quiz">
-            <h4 className="question">
-              Quiz 2 - Which of the following is an example of a situation where
-              you would use the Debounce function?
-            </h4>
-            <form className="quizOptions">
-              <label htmlFor="option1_q2">
-                <input type="checkbox" id="option1_q2" />A search bar where the
-                results are displayed as you type.
-              </label>
-
-              <label htmlFor="option2_q2">
-                <input type="checkbox" id="option2_q2" />A button that performs
-                an action when clicked.
-              </label>
-
-              <label htmlFor="option3_q2">
-                <input type="checkbox" id="option3_q2" />
-                An animation that plays when a user hovers over an element.
-              </label>
-
-              <label htmlFor="option4_q2">
-                <input type="checkbox" id="option4_q2" />
-                All of the above.
-              </label>
-            </form>
-          </div>
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="btn ml-auto"
+            //   className="px-5 border border-transparent text-sm font-medium rounded-md text-white bg-slate-900 hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+          >
+            Back
+          </button>
         </div>
+        {prevMarks?.[0]?.mark > 0 ? (
+          <div className="w-full bg-slate-900 px-5 py-3 rounded-md">
+            <p className="text-xl font-semibold text-slate-200 ">
+              Total Marks: {prevMarks?.[0]?.totalMark || 0}
+            </p>
+            <p className="text-xl font-semibold text-slate-200">
+              Obtained Marks: {prevMarks?.[0]?.mark || 0}
+            </p>
+            <p className="text-xl font-semibold text-slate-200">
+              Total Wrong: {prevMarks?.[0]?.totalWrong || 0}
+            </p>
+            <p className="text-xl font-semibold text-slate-200">
+              Total Correct: {prevMarks?.[0]?.totalCorrect || 0}
+            </p>
+          </div>
+        ) : (
+          <div>
+            <div className="space-y-8 ">
+              {videoQuize?.length > 0 &&
+                videoQuize.map((quiz, idx) => (
+                  <div className="quiz" key={quiz?.id}>
+                    <h4 className="question">
+                      Quiz {idx + 1} - {quiz?.question}
+                    </h4>
+                    <form className="quizOptions">
+                      {quiz?.options?.map((opt, i) => (
+                        <label htmlFor={`option${i + 1}_q${idx}`} key={i + 1}>
+                          <input
+                            type="checkbox"
+                            id={`option${i + 1}_q${idx}`}
+                            onChange={(e) => {
+                              optionHandeler(e.target.checked, quiz, opt);
+                            }}
+                          />
+                          {opt?.option}
+                        </label>
+                      ))}
+                    </form>
+                  </div>
+                ))}
+            </div>
 
-        <button className="px-4 py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95 ">
-          Submit
-        </button>
+            <button
+              onClick={onSubmitQuize}
+              type="button"
+              className="px-4 py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95 "
+            >
+              Submit
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

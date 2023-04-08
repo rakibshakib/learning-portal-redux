@@ -22,7 +22,7 @@ const ViewModal = ({
         width={width || 1000}
         bodyStyle={{
           height: height || "80vh",
-          overflowY: "scroll",
+          // overflowY: "scroll",
         }}
         footer={null}
       >
