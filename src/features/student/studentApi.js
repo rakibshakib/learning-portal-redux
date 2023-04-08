@@ -86,7 +86,7 @@ export const studentApi = rootAPI.injectEndpoints({
       query: () => `/quizMark`,
     }),
     getAllQuizeMarkVideoId: builder.query({
-      query: (vidId) => `/quizMark?video_id=${+vidId}`,
+      query: ({vidId, student_id}) => `/quizMark?video_id=${+vidId}&student_id=${+student_id}`,
     }),
   }),
 });

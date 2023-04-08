@@ -1,6 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useGetAllQuizeMarkQuery } from "../../../features/student/studentApi";
+import { useGetMarksLandingQuery } from "../../../features/admin/marksApi";
+import { useSelector } from "react-redux";
 
 const Leaderboard = () => {
+  const { id } = useSelector((state) => state?.profile?.user);
+
+  const { data: allQuizeMarks } = useGetAllQuizeMarkQuery();
+  const { data: allAssignmentMarks } = useGetMarksLandingQuery();
+  const [landing, setLanding] = useState([]);
+  const [studentResult, setStudentResult] = useState({});
+
+  useEffect(() => {
+    const modifiedCommonQuizeArray = allQuizeMarks?.reduce(
+      (modifiedArr, currValue) => {
+        const studentIndex = modifiedArr.findIndex(
+          (obj) => obj.student_id === currValue.student_id
+        );
+        if (studentIndex !== -1) {
+          modifiedArr[studentIndex].mark += currValue.mark;
+        } else {
+          modifiedArr.push({
+            student_id: currValue.student_id,
+            student_name: currValue.student_name,
+            mark: currValue.mark,
+          });
+        }
+        return modifiedArr;
+      },
+      []
+    );
+    const modifiedCommonMarksArray = allAssignmentMarks?.reduce(
+      (modifiedArr, currValue) => {
+        const studentIndex = modifiedArr.findIndex(
+          (obj) => obj.student_id === currValue.student_id
+        );
+        if (studentIndex !== -1) {
+          modifiedArr[studentIndex].mark += +currValue.mark;
+          modifiedArr[studentIndex].assingmentMarks += +currValue.mark;
+        } else {
+          modifiedArr.push({
+            student_id: currValue.student_id,
+            student_name: currValue.student_name,
+            mark: +currValue.mark,
+            assingmentMarks: +currValue.mark,
+          });
+        }
+        return modifiedArr;
+      },
+      []
+    );
+    const mergedArray = modifiedCommonMarksArray?.map((student) => {
+      const temp = modifiedCommonQuizeArray?.find(
+        (quiz) => quiz.student_id === student.student_id
+      );
+      return { ...student, ...temp };
+    });
+    const sortingList = mergedArray?.sort((a, b) => {
+      const sumA = a.mark + a.assingmentMarks;
+      const sumB = b.mark + b.assingmentMarks;
+      return sumB - sumA;
+    });
+    const temp = sortingList?.map((obj, index, arr) => {
+      const prevObj = arr[index - 1];
+      const prevPos = prevObj ? prevObj.position : undefined;
+      const sum = obj.mark + obj.assingmentMarks;
+      if (prevObj && sum === prevObj.sum) {
+        obj.position = prevPos;
+      } else {
+        obj.position = index + 1;
+      }
+      obj.sum = sum;
+      return obj;
+    });
+    setStudentResult(temp?.find((item) => item?.student_id === id));
+    setLanding(temp);
+  }, [allQuizeMarks, allAssignmentMarks, id]);
+
+  console.log(landing);
   return (
     <section className="py-6 bg-primary">
       <div className="mx-auto max-w-7xl px-5 lg:px-0">
@@ -19,11 +96,21 @@ const Leaderboard = () => {
 
             <tbody>
               <tr className="border-2 border-cyan">
-                <td className="table-td text-center font-bold">4</td>
-                <td className="table-td text-center font-bold">Saad Hasan</td>
-                <td className="table-td text-center font-bold">50</td>
-                <td className="table-td text-center font-bold">50</td>
-                <td className="table-td text-center font-bold">100</td>
+                <td className="table-td text-center font-bold">
+                  {studentResult?.position}
+                </td>
+                <td className="table-td text-center font-bold">
+                  {studentResult?.student_name}
+                </td>
+                <td className="table-td text-center font-bold">
+                  {studentResult?.mark}
+                </td>
+                <td className="table-td text-center font-bold">
+                  {studentResult?.assingmentMarks}
+                </td>
+                <td className="table-td text-center font-bold">
+                  {studentResult?.assingmentMarks + studentResult?.mark}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -43,7 +130,26 @@ const Leaderboard = () => {
             </thead>
 
             <tbody>
-              <tr className="border-b border-slate-600/50">
+              {landing?.length > 0 &&
+                landing?.slice(0, 20).map((item, idx) => (
+                  <tr
+                    key={item?.student_id}
+                    className="border-b border-slate-600/50"
+                  >
+                    <td className="table-td text-center">{item?.position}</td>
+                    <td className="table-td text-center">
+                      {item?.student_name}
+                    </td>
+                    <td className="table-td text-center">{item?.mark}</td>
+                    <td className="table-td text-center">
+                      {item?.assingmentMarks}
+                    </td>
+                    <td className="table-td text-center">
+                      {item?.assingmentMarks + item?.mark}
+                    </td>
+                  </tr>
+                ))}
+              {/*  <tr className="border-b border-slate-600/50">
                 <td className="table-td text-center">4</td>
                 <td className="table-td text-center">Saad Hasan</td>
                 <td className="table-td text-center">50</td>
@@ -89,7 +195,7 @@ const Leaderboard = () => {
                 <td className="table-td text-center">50</td>
                 <td className="table-td text-center">50</td>
                 <td className="table-td text-center">100</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>

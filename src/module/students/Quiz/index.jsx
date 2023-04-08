@@ -11,8 +11,12 @@ import Loading from "../../../common/Loading";
 
 const Quiz = () => {
   const { videoId } = useParams();
-  const { data: prevMarks } = useGetAllQuizeMarkVideoIdQuery(videoId);
-  const { email, name, id } = useSelector((state) => state?.profile?.user);
+  const { id, name } = useSelector((state) => state?.profile?.user);
+
+  const { data: prevMarks } = useGetAllQuizeMarkVideoIdQuery({
+    vidId: videoId,
+    student_id: id,
+  });
 
   const { data: videoQuize } = useGetQuizzesByIdQuery(videoId);
   const [selectedArr, setSelectedArr] = useState([]);
