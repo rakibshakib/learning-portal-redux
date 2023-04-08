@@ -12,7 +12,7 @@ export const authApi = rootAPI.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
-          console.log(result);
+ 
           localStorage.setItem(
             "auth",
             JSON.stringify({

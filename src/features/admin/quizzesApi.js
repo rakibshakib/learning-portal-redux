@@ -18,7 +18,7 @@ export const quizzesApi = rootAPI.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
-          console.log(result);
+  
           if (result?.data?.id) {
             dispatch(
               rootAPI.util.updateQueryData(

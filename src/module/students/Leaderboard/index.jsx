@@ -50,7 +50,6 @@ const Leaderboard = () => {
       },
       []
     );
-    console.log({modifiedCommonQuizeArray, modifiedCommonMarksArray})
     const mergedArray = modifiedCommonMarksArray?.map((student) => {
       const temp = modifiedCommonQuizeArray?.find(
         (quiz) => quiz.student_id === student.student_id
@@ -74,14 +73,10 @@ const Leaderboard = () => {
       obj.sum = sum;
       return obj;
     });
-    console.log({mergedArray})
-    console.log({sortingList})
-    console.log({temp})
     setStudentResult(temp?.find((item) => item?.student_id === id));
     setLanding(temp);
   }, [allQuizeMarks, allAssignmentMarks, id]);
 
-  console.log(landing);
   return (
     <section className="py-6 bg-primary">
       <div className="mx-auto max-w-7xl px-5 lg:px-0">

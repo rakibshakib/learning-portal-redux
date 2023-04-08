@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 const VideoPlayer = ({ objProps }) => {
   const { currentVideo } = objProps || {};
-  const { email, name, id } = useSelector((state) => state?.profile?.user);
+  const { id } = useSelector((state) => state?.profile?.user);
   const { data: assignMent } = useGetAssignmentByIdQuery(currentVideo?.id);
   const { data: videoQuize } = useGetQuizzesByIdQuery(currentVideo?.id);
   const { data: submittedAssignment } =
@@ -23,7 +23,6 @@ const VideoPlayer = ({ objProps }) => {
     });
   const [open, setOpen] = useState(false);
 
-  console.log(submittedAssignment);
   return (
     <div className="col-span-full w-full space-y-8 lg:col-span-2">
       {!currentVideo?.title && <Loading />}

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { rootAPI } from "../apiSlice";
 
 export const adminApi = rootAPI.injectEndpoints({

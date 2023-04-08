@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   useAddQuizMarkMutation,
   useGetAllQuizeMarkVideoIdQuery,
@@ -21,8 +21,7 @@ const Quiz = () => {
   const { data: videoQuize } = useGetQuizzesByIdQuery(videoId);
   const [selectedArr, setSelectedArr] = useState([]);
   const [selectedOption, setselectedOption] = useState([]);
-  const [saveQuize, { isLoading, isSuccess, data: result }] =
-    useAddQuizMarkMutation();
+  const [saveQuize, { isLoading }] = useAddQuizMarkMutation();
 
   const optionHandeler = (isChecked, quiz, option) => {
     if (isChecked) {
@@ -76,7 +75,6 @@ const Quiz = () => {
       correctAnsQuiz,
       selectedArr
     );
-    console.log({ correctCount, score, wrongCount });
     const payload = {
       id: Date.now(),
       student_id: id,
@@ -91,7 +89,6 @@ const Quiz = () => {
     };
     saveQuize(payload);
   };
-  console.log(videoQuize, result);
   const navigate = useNavigate();
 
   return (

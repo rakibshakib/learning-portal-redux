@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useAddAssignmentMutation } from "../../../features/student/studentApi";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import Loading from "../../../common/Loading";
 
 const SubmitAssignMent = ({ currentVideo, setOpen }) => {
   const [repoLink, setRepoLink] = useState("");
-  const { email, name, id } = useSelector((state) => state?.profile?.user);
+  const { name, id } = useSelector((state) => state?.profile?.user);
   const [submitAssignment, { isLoading, isSuccess, isError }] =
     useAddAssignmentMutation();
   const handleSubmitAssignments = (e) => {
@@ -37,6 +38,7 @@ const SubmitAssignMent = ({ currentVideo, setOpen }) => {
   }, [isSuccess, isError, setOpen]);
   return (
     <div className="bg-primary h-full py-2">
+      {isLoading && <Loading />}
       <div className="mx-auto w-full px-5 lg:px-20">
         <form className="mt-8 space-y-6" onSubmit={handleSubmitAssignments}>
           <div className="flex justify-between">

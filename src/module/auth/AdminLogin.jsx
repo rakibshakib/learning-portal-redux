@@ -25,7 +25,7 @@ const AdminLogin = () => {
     isSuccess && toast.success("Login Successfull");
     isSuccess && navigate("/");
     isError && toast.warn("Login Failed");
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, navigate]);
   return (
     <section className="py-6 bg-primary h-screen grid place-items-center">
       <div className="mx-auto max-w-md px-5 lg:px-0">

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { rootAPI } from "../apiSlice";
 
 export const assignmentsApi = rootAPI.injectEndpoints({
@@ -17,7 +18,6 @@ export const assignmentsApi = rootAPI.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
-          console.log(result);
           if (result?.data?.id) {
             dispatch(
               rootAPI.util.updateQueryData(

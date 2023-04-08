@@ -11,8 +11,3 @@
   justify-content: center;
   align-items: center;
 }
-.custom-flex {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: end !important;
-}

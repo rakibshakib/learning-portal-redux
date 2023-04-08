@@ -6,7 +6,7 @@ import { logOutProfile } from "../features/users/userSlice";
 
 const StudentNav = () => {
   const dispatch = useDispatch();
-  const { email, name } = useSelector((state) => state?.profile?.user);
+  const { name } = useSelector((state) => state?.profile?.user);
   const navigate = useNavigate();
 
   const handleLogout = () => {
