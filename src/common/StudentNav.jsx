@@ -1,16 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../asset/image/learningportal.svg";
 import { logOutProfile } from "../features/users/userSlice";
 
 const StudentNav = () => {
   const dispatch = useDispatch();
   const { email, name } = useSelector((state) => state?.profile?.user);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logOutProfile());
     localStorage.clear();
+    navigate("/");
   };
   return (
     <nav className="shadow-md">

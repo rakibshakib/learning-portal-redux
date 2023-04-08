@@ -9,6 +9,7 @@ import Quizzes from "../module/Admin/Quizzes";
 import QuizzesForm from "../module/Admin/Quizzes/QuizzesForm";
 import VideoList from "../module/Admin/Videos";
 import CreateEditVideo from "../module/Admin/Videos/CreateEditVideo";
+import NotFound from "../common/NotFound";
 
 const AdminPages = () => {
   return (
@@ -36,6 +37,7 @@ const AdminPages = () => {
           element={<FormAssignments />}
         ></Route>
         <Route path="/admin/marks" element={<AssignmentsMarks />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
   );

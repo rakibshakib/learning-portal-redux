@@ -36,20 +36,21 @@ const Leaderboard = () => {
           (obj) => obj.student_id === currValue.student_id
         );
         if (studentIndex !== -1) {
-          modifiedArr[studentIndex].mark += +currValue.mark;
           modifiedArr[studentIndex].assingmentMarks += +currValue.mark;
+          modifiedArr[studentIndex].mark = 0;
         } else {
           modifiedArr.push({
             student_id: currValue.student_id,
             student_name: currValue.student_name,
-            mark: +currValue.mark,
             assingmentMarks: +currValue.mark,
+            mark: 0,
           });
         }
         return modifiedArr;
       },
       []
     );
+    console.log({modifiedCommonQuizeArray, modifiedCommonMarksArray})
     const mergedArray = modifiedCommonMarksArray?.map((student) => {
       const temp = modifiedCommonQuizeArray?.find(
         (quiz) => quiz.student_id === student.student_id
@@ -73,6 +74,9 @@ const Leaderboard = () => {
       obj.sum = sum;
       return obj;
     });
+    console.log({mergedArray})
+    console.log({sortingList})
+    console.log({temp})
     setStudentResult(temp?.find((item) => item?.student_id === id));
     setLanding(temp);
   }, [allQuizeMarks, allAssignmentMarks, id]);
