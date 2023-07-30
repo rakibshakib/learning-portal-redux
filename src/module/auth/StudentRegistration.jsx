@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import loginPortalImage from "../../asset/image/learningportal.svg";
+import loginPortalImage from "../../asset/image/logo.png";
 import { useRegisterMutation } from "../../features/auth/authSlice";
 
 const StudentRegistration = () => {

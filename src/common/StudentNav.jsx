@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../asset/image/learningportal.svg";
+// import logo from "../asset/image/learningportal.svg";
+import logo from "../asset/image/logo.png";
 import { logOutProfile } from "../features/users/userSlice";
 
 const StudentNav = () => {
@@ -18,7 +19,7 @@ const StudentNav = () => {
     <nav className="shadow-md">
       <div className="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
         <Link to="/">
-          <img className="h-10" src={logo} alt="." />
+          <img className="h-12" src={logo} alt="." />
         </Link>
         <div className="flex items-center gap-3">
           <Link to="/leaderboard">Leaderboard</Link>

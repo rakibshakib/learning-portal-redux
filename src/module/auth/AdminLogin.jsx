@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import loginPortalImage from "../../asset/image/learningportal.svg";
+import loginPortalImage from "../../asset/image/logo.png";
 import { useLoginMutation } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
 
