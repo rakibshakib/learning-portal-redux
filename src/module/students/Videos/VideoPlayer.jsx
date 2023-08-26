@@ -22,7 +22,7 @@ const VideoPlayer = ({ objProps }) => {
       stuId: id,
     });
   const [open, setOpen] = useState(false);
-    console.log({submittedAssignment})
+    console.log({assignMent})
   return (
     <div className="col-span-full w-full space-y-8 lg:col-span-2">
       {!currentVideo?.title && <Loading />}
@@ -80,7 +80,7 @@ const VideoPlayer = ({ objProps }) => {
         title={currentVideo?.title}
         height={"30vh"}
       >
-        <SubmitAssignMent currentVideo={currentVideo} setOpen={setOpen} />
+        <SubmitAssignMent currentVideo={currentVideo} setOpen={setOpen} assignMent={assignMent?.[0]} />
       </ViewModal>
     </div>
   );

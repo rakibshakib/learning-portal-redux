@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Loading from "../../../common/Loading";
 
-const SubmitAssignMent = ({ currentVideo, setOpen }) => {
+const SubmitAssignMent = ({ currentVideo, setOpen, assignMent }) => {
   const [repoLink, setRepoLink] = useState("");
   const { name, id } = useSelector((state) => state?.profile?.user);
   const [submitAssignment, { isLoading, isSuccess, isError }] =
@@ -18,8 +18,10 @@ const SubmitAssignMent = ({ currentVideo, setOpen }) => {
         id: Date.now(),
         student_id: id,
         student_name: name,
-        assignment_id: currentVideo?.id,
-        title: currentVideo?.title,
+        // assignment_id: currentVideo?.id,
+        // title: currentVideo?.title,
+        assignment_id: assignMent?.id,
+        title: assignMent?.title,
         createdAt: new Date().toISOString(),
         totalMark: 100,
         mark: 0,
