@@ -22,7 +22,7 @@ const VideoPlayer = ({ objProps }) => {
       stuId: id,
     });
   const [open, setOpen] = useState(false);
-
+    console.log({submittedAssignment})
   return (
     <div className="col-span-full w-full space-y-8 lg:col-span-2">
       {!currentVideo?.title && <Loading />}
@@ -49,7 +49,7 @@ const VideoPlayer = ({ objProps }) => {
             <>
               {submittedAssignment?.length > 0 ? (
                 <p className="cursor-pointer px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
-                  এসাইনমেন্ট জমা দিয়েছেন
+                  Assignment Marks: {submittedAssignment?.[0]?.mark} out of {submittedAssignment?.[0]?.totalMark}
                 </p>
               ) : (
                 <p
