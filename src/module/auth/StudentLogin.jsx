@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import loginPortalImage from "../../asset/image/logo.png";
 import { useLoginMutation } from "../../features/auth/authSlice";
+import Loading from "../../common/Loading";
 
 const StudentLogin = () => {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
-  const [login, { isSuccess, isError }] = useLoginMutation();
+  const [login, { isSuccess, isError, isLoading }] = useLoginMutation();
   const handleSetter = (e) => {
     setLoginData((prev) => ({
       ...prev,
@@ -26,6 +27,9 @@ const StudentLogin = () => {
   }, [isSuccess, isError]);
   return (
     <section className="py-6 bg-primary h-screen grid place-items-center">
+      {
+        isLoading && <Loading />
+      }
       <div className="mx-auto max-w-md px-5 lg:px-0">
         <div>
           <img className="h-12 mx-auto" src={loginPortalImage} alt="img" />

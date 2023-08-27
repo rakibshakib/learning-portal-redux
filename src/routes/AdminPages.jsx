@@ -37,6 +37,7 @@ const AdminPages = () => {
           element={<FormAssignments />}
         ></Route>
         <Route path="/admin/marks" element={<AssignmentsMarks />}></Route>
+        <Route path="/admin/user-management" element={<AssignmentsMarks />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
