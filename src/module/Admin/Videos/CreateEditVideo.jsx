@@ -58,6 +58,7 @@ const CreateEditVideo = () => {
     } else {
       const payload = {
         ...vodeoState,
+        id: Date.now(),
       };
       addVideo(payload);
     }

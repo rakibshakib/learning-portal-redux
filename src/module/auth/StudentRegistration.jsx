@@ -29,7 +29,7 @@ const StudentRegistration = () => {
       email: loginData?.email,
       password: loginData?.password,
       name: loginData?.name,
-      // id: Date.now(),
+      id: Date.now(),
       role: "student",
     };
     register(payload);
