@@ -76,7 +76,6 @@ const Quiz = () => {
       selectedArr
     );
     const payload = {
-      id: Date.now(),
       student_id: id,
       student_name: name,
       video_id: videoQuize?.[0]?.video_id,
@@ -90,7 +89,7 @@ const Quiz = () => {
     saveQuize(payload);
   };
   const navigate = useNavigate();
-
+  console.log(prevMarks)
   return (
     <section className="py-6 bg-primary">
       {isLoading && <Loading />}
@@ -113,7 +112,7 @@ const Quiz = () => {
             Back
           </button>
         </div>
-        {prevMarks?.[0]?.mark > 0 ? (
+        {prevMarks?.[0]?.id ? (
           <div className="w-full bg-slate-900 px-5 py-3 rounded-md">
             <p className="text-xl font-semibold text-slate-200 ">
               Total Marks: {prevMarks?.[0]?.totalMark || 0}

@@ -10,7 +10,7 @@ const Leaderboard = () => {
   const { data: allAssignmentMarks } = useGetMarksLandingQuery();
   const [landing, setLanding] = useState([]);
   const [studentResult, setStudentResult] = useState({});
-
+  console.log({allQuizeMarks,allAssignmentMarks })
   useEffect(() => {
     const modifiedCommonQuizeArray = allQuizeMarks?.reduce(
       (modifiedArr, currValue) => {
@@ -73,46 +73,52 @@ const Leaderboard = () => {
       obj.sum = sum;
       return obj;
     });
+    console.log({temp})
     setStudentResult(temp?.find((item) => item?.student_id === id));
     setLanding(temp);
   }, [allQuizeMarks, allAssignmentMarks, id]);
+  console.log(landing)
 
   return (
     <section className="py-6 bg-primary">
       <div className="mx-auto max-w-7xl px-5 lg:px-0">
         <div>
           <h3 className="text-lg font-bold">Your Position in Leaderboard</h3>
-          <table className="text-base w-full border border-slate-600/50 rounded-md my-4">
-            <thead>
-              <tr>
-                <th className="table-th !text-center">Rank</th>
-                <th className="table-th !text-center">Name</th>
-                <th className="table-th !text-center">Quiz Mark</th>
-                <th className="table-th !text-center">Assignment Mark</th>
-                <th className="table-th !text-center">Total</th>
-              </tr>
-            </thead>
+          {studentResult?.position ? (
+            <table className="text-base w-full border border-slate-600/50 rounded-md my-4">
+              <thead>
+                <tr>
+                  <th className="table-th !text-center">Rank</th>
+                  <th className="table-th !text-center">Name</th>
+                  <th className="table-th !text-center">Quiz Mark</th>
+                  <th className="table-th !text-center">Assignment Mark</th>
+                  <th className="table-th !text-center">Total</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              <tr className="border-2 border-cyan">
-                <td className="table-td text-center font-bold">
-                  {studentResult?.position}
-                </td>
-                <td className="table-td text-center font-bold">
-                  {studentResult?.student_name}
-                </td>
-                <td className="table-td text-center font-bold">
-                  {studentResult?.mark}
-                </td>
-                <td className="table-td text-center font-bold">
-                  {studentResult?.assingmentMarks}
-                </td>
-                <td className="table-td text-center font-bold">
-                  {studentResult?.assingmentMarks + studentResult?.mark}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+              <tbody>
+                <tr className="border-2 border-cyan">
+                  <td className="table-td text-center font-bold">
+                    {studentResult?.position}
+                  </td>
+                  <td className="table-td text-center font-bold">
+                    {studentResult?.student_name}
+                  </td>
+                  <td className="table-td text-center font-bold">
+                    {studentResult?.mark}
+                  </td>
+                  <td className="table-td text-center font-bold">
+                    {studentResult?.assingmentMarks}
+                  </td>
+                  <td className="table-td text-center font-bold">
+                    {studentResult?.assingmentMarks + studentResult?.mark}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          ) : (
+            <><h3 className="text-md font-bold my-4">Please participate in quizzes and assignments to position yourself on the leaderboard.</h3></>
+          )}
         </div>
 
         <div className="my-8">

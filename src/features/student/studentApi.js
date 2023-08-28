@@ -3,10 +3,10 @@ import { rootAPI } from "../apiSlice";
 export const studentApi = rootAPI.injectEndpoints({
   endpoints: (builder) => ({
     getQuizzesById: builder.query({
-      query: (vidId) => `/quizzes?video_id=${+vidId}`,
+      query: (vidId) => `/quizzes?video_id=${vidId}`,
     }),
     getAssignmentById: builder.query({
-      query: (vidId) => `/assignments?video_id=${+vidId}`,
+      query: (vidId) => `/assignments?video_id=${vidId}`,
     }),
     checkAssignmentSubmittedByStudent: builder.query({
       query: ({ stuId, vidId }) =>
@@ -86,7 +86,7 @@ export const studentApi = rootAPI.injectEndpoints({
       query: () => `/quizMark`,
     }),
     getAllQuizeMarkVideoId: builder.query({
-      query: ({vidId, student_id}) => `/quizMark?video_id=${+vidId}&student_id=${+student_id}`,
+      query: ({vidId, student_id}) => `/quizMark?video_id=${vidId}&student_id=${student_id}`,
     }),
   }),
 });

@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loading from "../../../common/Loading";
 import {
@@ -14,15 +14,28 @@ import { useSelector } from "react-redux";
 const VideoPlayer = ({ objProps }) => {
   const { currentVideo } = objProps || {};
   const { id } = useSelector((state) => state?.profile?.user);
-  const { data: assignMent } = useGetAssignmentByIdQuery(currentVideo?.id);
-  const { data: videoQuize } = useGetQuizzesByIdQuery(currentVideo?.id);
+  const [isReq, setIsReq] = useState(true);
+  const [isReq2, setIsReq2] = useState(true);
+  const { data: assignMent } = useGetAssignmentByIdQuery(currentVideo?.id, {
+    skip: isReq,
+  });
+  const { data: videoQuize } = useGetQuizzesByIdQuery(currentVideo?.id, {
+    skip: isReq2,
+  });
   const { data: submittedAssignment } =
     useCheckAssignmentSubmittedByStudentQuery({
       vidId: currentVideo?.id,
       stuId: id,
     });
   const [open, setOpen] = useState(false);
-    console.log({assignMent})
+  console.log({ assignMent });
+  useEffect(() => {
+    if (currentVideo?.id) {
+      setIsReq(false);
+      setIsReq2(false);
+    }
+  }, [currentVideo]);
+  console.log(assignMent, submittedAssignment)
   return (
     <div className="col-span-full w-full space-y-8 lg:col-span-2">
       {!currentVideo?.title && <Loading />}
@@ -45,11 +58,12 @@ const VideoPlayer = ({ objProps }) => {
         </h2>
 
         <div className="flex gap-4">
-          {assignMent?.length > 0 && (
+          {assignMent?.title && (
             <>
               {submittedAssignment?.length > 0 ? (
                 <p className="cursor-pointer px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
-                  Assignment Marks: {submittedAssignment?.[0]?.mark} out of {submittedAssignment?.[0]?.totalMark}
+                  Assignment Marks: {submittedAssignment?.[0]?.mark} out of{" "}
+                  {submittedAssignment?.[0]?.totalMark}
                 </p>
               ) : (
                 <p
@@ -77,10 +91,14 @@ const VideoPlayer = ({ objProps }) => {
       <ViewModal
         open={open}
         onCancel={() => setOpen(false)}
-        title={currentVideo?.title}
+        title={assignMent?.title}
         height={"30vh"}
       >
-        <SubmitAssignMent currentVideo={currentVideo} setOpen={setOpen} assignMent={assignMent?.[0]} />
+        <SubmitAssignMent
+          currentVideo={currentVideo}
+          setOpen={setOpen}
+          assignMent={assignMent}
+        />
       </ViewModal>
     </div>
   );

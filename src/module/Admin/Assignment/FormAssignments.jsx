@@ -50,17 +50,16 @@ const FormAssignments = () => {
       const payload = {
         ...assignments,
         totalMark: +assignments.totalMark,
-        id: id,
+        id: assignments?.id,
       };
       editAssingment({
-        id: id || singleAssignment?.id,
+        id: singleAssignment?.id,
         data: payload,
       });
     } else {
       const payload = {
         ...assignments,
         totalMark: +assignments.totalMark,
-        id: Date.now(),
       };
       saveAssingment(payload);
     }
