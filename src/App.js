@@ -5,11 +5,17 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { pageReturn } from "./routes/helper";
 import { setProfile } from "./features/users/userSlice";
+import axios from "axios";
+
+
+export const baseURL = "http://localhost:5000"
+
+axios.defaults.baseURL = baseURL;
 
 function App() {
   const { isAuth, isAdmin } = useSelector((state) => state?.profile);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     const localAuth = localStorage?.getItem("auth");
     if (localAuth) {
