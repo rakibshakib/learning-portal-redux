@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useAxiosGet from "../../hooks/useAxiosGet";
 import { toast } from "react-toastify";
+import Loading from "../../common/Loading";
 
 const Home = () => {
   const { user } = useSelector((state) => state?.profile);
@@ -21,6 +22,7 @@ const Home = () => {
   };
   return (
     <section className="py-6 bg-primary">
+      {loading && <Loading />}
       <div className="mx-auto max-w-7xl px-5 lg:px-0">
         <div className="px-3 md:lg:xl:px-40  py-20 bg-opacity-10">
           <p className="text-center text-xl font-bold mb-5">
