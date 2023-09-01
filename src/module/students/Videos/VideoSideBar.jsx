@@ -41,9 +41,9 @@ const VideoSideBar = ({ objProps }) => {
                 </p>
             
               <div>
-                <span className="text-gray-400 text-xs mt-1">34.5 Mins</span>
+                <span className="text-gray-400 text-xs mt-1">{vid?.duration}</span>
                 <span className="text-gray-400 text-xs mt-1"> | </span>
-                <span className="text-gray-400 text-xs mt-1">241K views</span>
+                <span className="text-gray-400 text-xs mt-1">{vid?.views} views</span>
               </div>
             </div>
           </div>

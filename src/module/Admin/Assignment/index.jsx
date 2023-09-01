@@ -39,10 +39,11 @@ const Assignment = () => {
               </button>
             </div>
           </div>
-          <div className="overflow-x-auto mt-4">
+          <div className=" mt-4">
             <table className="divide-y-1 text-base divide-gray-600 w-full">
               <thead>
                 <tr>
+                  <th className="table-th">SL</th>
                   <th className="table-th">Title</th>
                   <th className="table-th">Video Title</th>
                   <th className="table-th">Mark</th>
@@ -52,8 +53,9 @@ const Assignment = () => {
 
               <tbody className="divide-y divide-slate-600/50">
                 {assignments?.length > 0 &&
-                  assignments.map((assignment) => (
+                  assignments.map((assignment, ix) => (
                     <tr key={assignment?.id}>
+                      <td className="table-td">{ix + 1}</td>
                       <td className="table-td">{assignment?.title}</td>
                       <td className="table-td">{assignment?.video_title}</td>
                       <td className="table-td">{assignment?.totalMark}</td>

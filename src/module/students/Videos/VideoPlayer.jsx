@@ -16,6 +16,7 @@ const VideoPlayer = ({ objProps }) => {
   const { id } = useSelector((state) => state?.profile?.user);
   const [isReq, setIsReq] = useState(true);
   const [isReq2, setIsReq2] = useState(true);
+  const [checkAssignmentSubmitted, iSCheckAssignmentSubmitted] = useState(true);
   const { data: assignMent } = useGetAssignmentByIdQuery(currentVideo?.id, {
     skip: isReq,
   });
@@ -23,10 +24,15 @@ const VideoPlayer = ({ objProps }) => {
     skip: isReq2,
   });
   const { data: submittedAssignment } =
-    useCheckAssignmentSubmittedByStudentQuery({
-      vidId: currentVideo?.id,
-      stuId: id,
-    });
+    useCheckAssignmentSubmittedByStudentQuery(
+      {
+        vidId: assignMent?.id || " ",
+        stuId: id,
+      },
+      {
+        skip: checkAssignmentSubmitted,
+      }
+    );
   const [open, setOpen] = useState(false);
   console.log({ assignMent });
   useEffect(() => {
@@ -35,7 +41,12 @@ const VideoPlayer = ({ objProps }) => {
       setIsReq2(false);
     }
   }, [currentVideo]);
-  console.log(assignMent, submittedAssignment)
+  useEffect(() => {
+    if (assignMent?.id) {
+      iSCheckAssignmentSubmitted(false);
+    }
+  }, [assignMent, currentVideo]);
+  console.log({assignMent});
   return (
     <div className="col-span-full w-full space-y-8 lg:col-span-2">
       {!currentVideo?.title && <Loading />}

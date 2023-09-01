@@ -42,6 +42,7 @@ const UserApproval = () => {
             <table className="divide-y-1 text-base divide-gray-600 w-full">
               <thead>
                 <tr>
+                  <th className="table-th">SL</th>
                   <th className="table-th">Student Name</th>
                   <th className="table-th">Email</th>
                   <th className="table-th">Join Date</th>
@@ -52,8 +53,9 @@ const UserApproval = () => {
 
               <tbody className="divide-y divide-slate-600/50">
                 {userLanding?.length > 0 &&
-                  userLanding.map((user) => (
+                  userLanding.map((user, i) => (
                     <tr key={user?.id}>
+                      <td className="table-td">{i + 1}</td>
                       <td className="table-td">{user?.name}</td>
                       <td className="table-td">{user?.email}</td>
                       <td className="table-td">
