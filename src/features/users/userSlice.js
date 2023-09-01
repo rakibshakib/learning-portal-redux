@@ -16,6 +16,9 @@ const userSilce = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.accessToken;
     },
+    updateName: (state, action) => {
+      state.user.name = action.payload?.name
+    },
     logOutProfile: (state) => {
       state.isAuth = false;
       state.isAdmin = false;
@@ -26,4 +29,4 @@ const userSilce = createSlice({
 });
 
 export default userSilce.reducer;
-export const { setProfile, logOutProfile } = userSilce.actions;
+export const { setProfile, logOutProfile, updateName } = userSilce.actions;

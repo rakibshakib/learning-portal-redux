@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ConfirmModal from "../../../common/ConfirmModal";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../../common/Loading";
 import moment from "moment";
 import useAxiosGet from "../../../hooks/useAxiosGet";
-import useAxiosReq from "../../../hooks/useAxiosReqjs";
 import useAxiosPost from "../../../hooks/useAxiosPost";
 const UserApproval = () => {
   const navigate = useNavigate();
-  const [userLanding, getDataFn, loading, setUserLanding] = useAxiosGet();
+  const [userLanding, getDataFn, loading] = useAxiosGet();
   const [, approvedUser, approvedLoading] = useAxiosPost();
 
   useEffect(() => {
     getDataFn("/users");
   }, []);
-  console.log({ userLanding });
+
   const approvedUserHandler = (user) => {
     const paylod = {
       id: user?.id,

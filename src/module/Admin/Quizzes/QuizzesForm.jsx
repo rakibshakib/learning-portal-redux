@@ -79,9 +79,8 @@ const QuizzesForm = () => {
         data: payload,
       });
     } else {
-      console.log(payload)
       save(payload);
-      // resetForm();
+      resetForm();
     }
   };
   useEffect(() => {
