@@ -34,7 +34,6 @@ const VideoPlayer = ({ objProps }) => {
       }
     );
   const [open, setOpen] = useState(false);
-  console.log({ assignMent });
   useEffect(() => {
     if (currentVideo?.id) {
       setIsReq(false);
@@ -46,7 +45,6 @@ const VideoPlayer = ({ objProps }) => {
       iSCheckAssignmentSubmitted(false);
     }
   }, [assignMent, currentVideo]);
-  console.log({assignMent});
   return (
     <div className="col-span-full w-full space-y-8 lg:col-span-2">
       {!currentVideo?.title && <Loading />}

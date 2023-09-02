@@ -34,7 +34,7 @@ const StudentLogin = () => {
         <div>
           <img className="h-12 mx-auto" src={loginPortalImage} alt="img" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-100">
-            Sign in to Student Account
+            Sign In to Your Account
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
