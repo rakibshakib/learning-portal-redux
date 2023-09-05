@@ -15,7 +15,6 @@ const SubmitAssignMent = ({ currentVideo, setOpen, assignMent }) => {
       return toast.warn("Repository Link Required");
     } else {
       const payload = {
-        id: Date.now(),
         student_id: id,
         student_name: name,
         // assignment_id: currentVideo?.id,

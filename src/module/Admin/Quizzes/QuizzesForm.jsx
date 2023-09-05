@@ -68,7 +68,6 @@ const QuizzesForm = () => {
       return toast.warn("Minimum Two Option Required");
     }
     const payload = {
-      id: Date.now(),
       question: quizzeState?.question,
       video_id: quizzeState?.video_id,
       video_title: quizzeState?.video_title,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import loginPortalImage from "../../asset/image/logo.png";
 import { useRegisterMutation } from "../../features/auth/authSlice";
@@ -9,7 +9,7 @@ const StudentRegistration = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    name: "LWS Admin",
+    name: "",
     // id: 1,
   });
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const StudentRegistration = () => {
                 autoComplete="name"
                 required
                 className="login-input rounded-t-md"
-                placeholder="Student Name"
+                placeholder="Name"
                 value={loginData?.name}
                 onChange={(e) => handleSetter(e)}
               />
@@ -116,6 +116,16 @@ const StudentRegistration = () => {
                 value={loginData?.confirmPassword}
                 onChange={(e) => handleSetter(e)}
               />
+            </div>
+          </div>
+          <div className="flex items-center justify-end">
+            <div className="text-sm">
+              <Link
+                to="/"
+                className="font-medium text-violet-600 hover:text-violet-500"
+              >
+                Back to login
+              </Link>
             </div>
           </div>
 

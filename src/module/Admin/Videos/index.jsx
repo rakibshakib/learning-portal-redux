@@ -41,10 +41,11 @@ const VideoList = () => {
               </button>
             </div>
           </div>
-          <div className="overflow-x-auto mt-4">
+          <div className=" mt-4">
             <table className="divide-y-1 text-base divide-gray-600 w-full">
               <thead>
                 <tr>
+                  <th className="table-th">SL</th>
                   <th className="table-th">Video Title</th>
                   <th className="table-th">Description</th>
                   <th className="table-th">Action</th>
@@ -53,8 +54,9 @@ const VideoList = () => {
 
               <tbody className="divide-y divide-slate-600/50">
                 {videos?.length > 0 &&
-                  videos.map((video) => (
+                  videos.map((video, index) => (
                     <tr key={video.id}>
+                      <td className="table-td">{index + 1}</td>
                       <td className="table-td">{video?.title}</td>
                       <td className="table-td">
                         {video?.description?.slice(0, 50)}....

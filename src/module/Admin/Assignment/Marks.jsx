@@ -62,10 +62,12 @@ const AssignmentsMarks = () => {
               Back
             </button>
           </ul>
-          <div className="overflow-x-auto mt-4">
+          {/* overflow-x-auto */}
+          <div className=" mt-4">
             <table className="divide-y-1 text-base divide-gray-600 w-full">
               <thead>
                 <tr>
+                  <th className="table-th">SL</th>
                   <th className="table-th">Assignment</th>
                   <th className="table-th">Date</th>
                   <th className="table-th">Student Name</th>
@@ -76,8 +78,9 @@ const AssignmentsMarks = () => {
 
               <tbody className="divide-y divide-slate-600/50">
                 {marksLanding?.length > 0 &&
-                  marksLanding.map((mark) => (
+                  marksLanding.map((mark, idx) => (
                     <tr key={mark?.id}>
+                      <td className="table-td">{idx + 1}</td>
                       <td className="table-td">{mark?.title}</td>
                       {/* <td className="table-td">{mark?.createdAt}</td> */}
                       {/* 10 Mar 2023 10:58:13 PM */}

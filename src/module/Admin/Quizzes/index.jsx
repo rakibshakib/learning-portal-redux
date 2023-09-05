@@ -38,10 +38,11 @@ const Quizzes = () => {
               </button>
             </div>
           </div>
-          <div className="overflow-x-auto mt-4">
+          <div className=" mt-4">
             <table className="divide-y-1 text-base divide-gray-600 w-full">
               <thead>
                 <tr>
+                  <th className="table-th">SL</th>
                   <th className="table-th">Question</th>
                   <th className="table-th">Video</th>
                   <th className="table-th justify-center">Action</th>
@@ -50,8 +51,9 @@ const Quizzes = () => {
 
               <tbody className="divide-y divide-slate-600/50">
                 {quizzes?.length > 0 &&
-                  quizzes?.map((quiz) => (
+                  quizzes?.map((quiz, index) => (
                     <tr key={quiz?.id}>
+                      <td className="table-td">{index + 1}</td>
                       <td className="table-td">{quiz?.question}</td>
                       <td className="table-td">{quiz?.video_title}</td>
                       <td className="table-td flex gap-x-2 justify-center">
