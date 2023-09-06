@@ -25,14 +25,14 @@ const Home = () => {
       {loading && <Loading />}
       <div className="mx-auto max-w-7xl px-5 lg:px-0">
         <div className="px-3 md:lg:xl:px-40  py-20 bg-opacity-10">
-          <p className="text-center text-xl font-bold mb-5">
+          <p className="text-center text-xl font-bold mb-5 text-black">
             Hello, {user?.name || "User"}, Welcome to Learniverse Portal
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2  gap-6 p-8">
             <Link to="/profile" className="dashboard-item-card">
               <img className="w-12 h-12 text-green-500" src={userIcon} alt="" />
 
-              <p className="text-slate-200 mt-3 ">Profile</p>
+              <p className="font-bold mt-3 ">Profile</p>
             </Link>
             <div
               onClick={() => handleRouting(singleUser)}
@@ -51,7 +51,7 @@ const Home = () => {
                 />
               </svg>
 
-              <p className="text-slate-200 mt-3 ">Videos</p>
+              <p className="font-bold mt-3 ">Videos</p>
             </div>
           </div>
         </div>

@@ -24,7 +24,10 @@ const Quizzes = () => {
     <section className="py-6 bg-primary">
       {(deleteLoading || isLoading) && <Loading />}
       <div className="mx-auto max-w-full px-5 lg:px-20">
-        <div className="px-3 py-20 bg-opacity-10">
+        <div className="px-3 bg-opacity-10">
+          <h4 className="mt-2 text-xl font-extrabold text-black border-b-2 mb-2">
+            Quizzes List
+          </h4>
           <div className="flex justify-end">
             <div className="flex">
               <button
@@ -38,7 +41,7 @@ const Quizzes = () => {
               </button>
             </div>
           </div>
-          <div className=" mt-4">
+          <div className="text-black mt-4">
             <table className="divide-y-1 text-base divide-gray-600 w-full">
               <thead>
                 <tr>

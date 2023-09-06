@@ -22,7 +22,7 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <p className="text-slate-200 mt-3 ">Videos</p>
+              <p className="font-bold mt-3 ">Videos</p>
             </Link>
 
             <Link to="/admin/assignment" className="dashboard-item-card">
@@ -41,7 +41,7 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <p className="text-slate-200 mt-3">Assignment</p>
+              <p className="font-bold mt-3">Assignment</p>
             </Link>
 
             <Link to="/admin/quizzes" className="dashboard-item-card">
@@ -58,7 +58,7 @@ const Dashboard = () => {
                   d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
                 />
               </svg>
-              <p className="text-slate-200 mt-3 ">Quizzes</p>
+              <p className="font-bold mt-3 ">Quizzes</p>
             </Link>
 
             <Link to="/admin/marks" className="dashboard-item-card">
@@ -75,12 +75,12 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <p className="text-slate-200 mt-3 ">Assignment Mark</p>
+              <p className="font-bold mt-3 ">Assignment Mark</p>
             </Link>
             <Link to="/admin/user-management" className="dashboard-item-card">
-              <img className="w-12 h-12 text-green-500" src={userIcon} alt="" />
+              <img className="w-14 h-14 text-black" src={userIcon} alt="" />
 
-              <p className="text-slate-200 mt-3 ">Student Management</p>
+              <p className="font-bold mt-3 ">Student Management</p>
             </Link>
           </div>
         </div>

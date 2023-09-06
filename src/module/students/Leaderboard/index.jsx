@@ -82,7 +82,7 @@ const Leaderboard = () => {
   return (
     <section className="py-6 bg-primary">
       <div className="mx-auto max-w-7xl px-5 lg:px-0">
-        <div>
+        <div className="text-black">
           <h3 className="text-lg font-bold">Your Position in Leaderboard</h3>
           {studentResult?.position ? (
             <table className="text-base w-full border border-slate-600/50 rounded-md my-4">
@@ -97,7 +97,7 @@ const Leaderboard = () => {
               </thead>
 
               <tbody>
-                <tr className="border-2 border-cyan">
+                <tr className="border-2 border-cyan-400">
                   <td className="table-td text-center font-bold">
                     {studentResult?.position}
                   </td>
@@ -117,13 +117,13 @@ const Leaderboard = () => {
               </tbody>
             </table>
           ) : (
-            <><h3 className="text-md font-bold my-4">Please participate in quizzes and assignments to position yourself on the leaderboard.</h3></>
+            <><h3 className="text-md font-bold my-4 text-black">Please participate in quizzes and assignments to position yourself on the leaderboard.</h3></>
           )}
         </div>
 
         <div className="my-8">
-          <h3 className="text-lg font-bold">Top 20 Result</h3>
-          <table className="text-base w-full border border-slate-600/50 rounded-md my-4">
+          <h3 className="text-lg font-bold text-black">Top 20 Result</h3>
+          <table className="text-base w-full border border-slate-600/50 rounded-md my-4 text-black">
             <thead>
               <tr className="border-b border-slate-600/50">
                 <th className="table-th !text-center">Rank</th>

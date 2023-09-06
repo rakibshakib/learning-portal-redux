@@ -85,32 +85,32 @@ const FormAssignments = () => {
     }
   }, [addSuccess, editSuccess]);
   return (
-    <section className="py-2 bg-primary grid place-items-center border-spacing-8 shadow-2xl">
+    <section className="py-2 bg-primary ">
       {(saving || editing) && <Loading />}
-      <div className="mx-auto w-full px-5 lg:px-20">
-        <form className="mt-8 space-y-6" onSubmit={handleSubmitAssignments}>
-          <div className="flex justify-between">
-            <h2 className="mt-2 text-3xl font-extrabold text-slate-100">
-              Add New Assignments
-            </h2>
-            <div className="flex justify-between">
+      <div className="mx-auto max-w-full px-5 lg:px-20">
+        <form className="mt-6 " onSubmit={handleSubmitAssignments}>
+          <h2 className="mt-2 text-xl font-extrabold text-black border-b-2 mb-2">
+            Add New Assignments
+          </h2>
+          <div className="flex justify-end">
+            <div className="flex">
               <button
                 type="submit"
-                className="btn text-xl ml-auto bg-violet-600 hover:bg-violet-700"
+                className="btn mr-2"
               >
                 Save
               </button>
               <button
                 type="button"
                 onClick={() => navigate(-1)}
-                className="btn ml-auto"
+                className="btn ml-1"
               >
                 Back
               </button>
             </div>
           </div>
 
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md shadow-sm -space-y-px text-black">
             <div className="py-1">
               <label htmlFor="title">Assignments Title: </label>
               <input

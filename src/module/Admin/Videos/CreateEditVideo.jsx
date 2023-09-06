@@ -92,16 +92,17 @@ const CreateEditVideo = () => {
     <section className="py-2 bg-primary grid place-items-center">
       {(singleLoading || editLoading || isLoading) && <Loading />}
       <div className="mx-auto w-full px-5 lg:px-20">
-        <form className="mt-8 space-y-6" onSubmit={handleSubmitVideo}>
-          <div className="flex justify-between">
-            <h2 className="mt-2 text-3xl font-extrabold text-slate-100">
-              Add New Video
-            </h2>
-            <div className="flex justify-between">
+        <form className="mt-6" onSubmit={handleSubmitVideo}>
+          <h2 className="mt-2 text-xl font-extrabold text-black border-b-2 mb-2">
+            Add New Video
+          </h2>
+          <div className="flex justify-end">
+            <div className="flex justify-">
               <button
                 type="submit"
+                className="btn ml-auto mr-2 text-white"
                 // className="btn text-xl ml-auto bg-violet-600 hover:bg-violet-700"
-                  className="px-5 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+                // className="px-5 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
               >
                 Save
               </button>
@@ -116,7 +117,7 @@ const CreateEditVideo = () => {
             </div>
           </div>
 
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md shadow-sm -space-y-px text-black">
             <div className="py-1">
               <label htmlFor="title">Video Title: </label>
               <input
