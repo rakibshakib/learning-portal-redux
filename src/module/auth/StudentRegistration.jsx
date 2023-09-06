@@ -46,7 +46,7 @@ const StudentRegistration = () => {
       <div className="mx-auto max-w-md px-5 lg:px-0">
         <div>
           <img className="h-12 mx-auto" src={loginPortalImage} alt="img" />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-100">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-black">
             Create Your New Account
           </h2>
         </div>
