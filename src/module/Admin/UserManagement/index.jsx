@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import ConfirmModal from "../../../common/ConfirmModal";
 import { useNavigate } from "react-router-dom";
