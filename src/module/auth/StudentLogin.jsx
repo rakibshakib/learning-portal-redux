@@ -39,7 +39,7 @@ const StudentLogin = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <input type="hidden" name="remember" value="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md shadow-sm -space-y-px text-black">
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address

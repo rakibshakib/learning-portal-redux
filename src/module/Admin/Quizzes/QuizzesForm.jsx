@@ -133,7 +133,7 @@ const QuizzesForm = () => {
             </div>
           </div>
 
-          <div className="rounded-md -space-y-px">
+          <div className="rounded-md -space-y-px text-black">
             <div className="py-1">
               <label htmlFor="question">Question: </label>
               <input
