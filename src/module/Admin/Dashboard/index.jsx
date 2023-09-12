@@ -80,7 +80,7 @@ const Dashboard = () => {
             <Link to="/admin/user-management" className="dashboard-item-card">
               <img className="w-14 h-14 text-black" src={userIcon} alt="" />
 
-              <p className="font-bold mt-3 ">Student Management</p>
+              <p className="font-bold mt-3 ">Student Approval</p>
             </Link>
           </div>
         </div>
