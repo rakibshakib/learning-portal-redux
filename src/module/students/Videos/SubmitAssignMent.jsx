@@ -43,7 +43,7 @@ const SubmitAssignMent = ({ currentVideo, setOpen, assignMent }) => {
       <div className="mx-auto w-full px-5 lg:px-20">
         <form className="mt-8 space-y-6" onSubmit={handleSubmitAssignments}>
           <div className="flex justify-between">
-            <h2 className="mt-2 text-3xl font-extrabold text-slate-100">
+            <h2 className="mt-2 text-3xl font-extrabold text-black">
               Submit Assignments
             </h2>
             <div className="flex justify-between">

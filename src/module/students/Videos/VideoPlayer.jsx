@@ -62,7 +62,7 @@ const VideoPlayer = ({ objProps }) => {
         <h1 className="text-lg font-bold tracking-tight text-black">
           {currentVideo?.title}
         </h1>
-        <h2 className=" pb-4 text-sm leading-[1.7142857] text-slate-400">
+        <h2 className=" pb-4 text-sm leading-[1.7142857] text-slate-900">
           Uploaded on {moment(currentVideo?.createdAt).format("DD MMM YYYY")}
         </h2>
 
@@ -93,7 +93,7 @@ const VideoPlayer = ({ objProps }) => {
             </Link>
           )}
         </div>
-        <p className="mt-4 text-sm text-slate-400 leading-6">
+        <p className="mt-4 text-sm text-gray-800 leading-6">
           {currentVideo?.description}
         </p>
       </div>
