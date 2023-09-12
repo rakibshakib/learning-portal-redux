@@ -22,8 +22,8 @@ const StudentNav = () => {
           <img className="h-12" src={logo} alt="." />
         </Link>
         <div className="flex items-center gap-3">
-          <Link to="/leaderboard">Leaderboard</Link>
-          <h2 className="font-medium">{name}</h2>
+          <Link to="/leaderboard"> <span className="text-black">Leaderboard</span></Link>
+          <h2 className="font-bold text-black">{name}</h2>
           <button
             onClick={handleLogout}
             className="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium"

@@ -57,6 +57,7 @@ const ProfileLanding = () => {
       setUser(res);
     });
     setName(user?.name);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <section className="py-6 bg-primary">
@@ -71,10 +72,10 @@ const ProfileLanding = () => {
               </button>
             </div>
           </div>
-          <div className="ring-2 ring-slate-400 shadow-2xl px-3 py-5 my-5 rounded-md h-[200px]">
+          <div className="ring-2 ring-slate-400 px-3 py-5 my-5 rounded-md h-[200px]">
             <div className="flex justify-center">
-              <div>
-                <div className="flex justify-start items-center">
+              <div className="text-black">
+                <div className="flex justify-start items-center ">
                   <p className="mr-3">Name: </p>
                   {isUpdate ? (
                     <input

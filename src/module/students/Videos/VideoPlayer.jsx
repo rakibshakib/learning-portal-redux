@@ -59,10 +59,10 @@ const VideoPlayer = ({ objProps }) => {
       ></iframe>
 
       <div>
-        <h1 className="text-lg font-semibold tracking-tight text-slate-100">
+        <h1 className="text-lg font-bold tracking-tight text-black">
           {currentVideo?.title}
         </h1>
-        <h2 className=" pb-4 text-sm leading-[1.7142857] text-slate-400">
+        <h2 className=" pb-4 text-sm leading-[1.7142857] text-slate-900">
           Uploaded on {moment(currentVideo?.createdAt).format("DD MMM YYYY")}
         </h2>
 
@@ -70,14 +70,14 @@ const VideoPlayer = ({ objProps }) => {
           {assignMent?.title && (
             <>
               {submittedAssignment?.length > 0 ? (
-                <p className="cursor-pointer px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
+                <p className="cursor-pointer px-3 font-bold py-1 border border-cyan text-black rounded-full text-sm hover:bg-cyan hover:text-primary">
                   Assignment Marks: {submittedAssignment?.[0]?.mark} out of{" "}
                   {submittedAssignment?.[0]?.totalMark}
                 </p>
               ) : (
                 <p
                   onClick={() => setOpen(true)}
-                  className="cursor-pointer px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
+                  className="cursor-pointer px-3 font-bold py-1 border border-cyan text-black rounded-full text-sm hover:bg-cyan hover:text-primary"
                 >
                   এসাইনমেন্ট
                 </p>
@@ -87,13 +87,13 @@ const VideoPlayer = ({ objProps }) => {
           {videoQuize?.length > 0 && (
             <Link
               to={`/quiz/${currentVideo?.id}`}
-              className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
+              className="px-3 font-bold py-1 border border-cyan text-black rounded-full text-sm hover:bg-cyan hover:text-primary"
             >
               কুইজে অংশগ্রহণ করুন
             </Link>
           )}
         </div>
-        <p className="mt-4 text-sm text-slate-400 leading-6">
+        <p className="mt-4 text-sm text-gray-800 leading-6">
           {currentVideo?.description}
         </p>
       </div>

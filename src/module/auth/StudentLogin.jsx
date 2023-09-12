@@ -29,13 +29,13 @@ const StudentLogin = () => {
       <div className="mx-auto max-w-md px-5 lg:px-0">
         <div>
           <img className="h-12 mx-auto" src={loginPortalImage} alt="img" />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-100">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-black">
             Sign In to Your Account
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <input type="hidden" name="remember" value="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md shadow-sm -space-y-px text-black">
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address

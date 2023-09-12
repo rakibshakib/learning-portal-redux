@@ -91,7 +91,7 @@ const Quiz = () => {
   const navigate = useNavigate();
   console.log(prevMarks)
   return (
-    <section className="py-6 bg-primary">
+    <section className="py-6 bg-primary text-black">
       {isLoading && <Loading />}
       <div className="mx-auto max-w-7xl px-5 lg:px-0">
         <div className="mb-8 flex justify-between">
@@ -99,7 +99,7 @@ const Quiz = () => {
             <h1 className="text-2xl font-bold">
               Quizzes for: {videoQuize?.[0]?.video_title}
             </h1>
-            <p className="text-sm text-slate-200">
+            <p className="text-sm ">
               Each question contains 5 Mark
             </p>
           </div>
@@ -133,7 +133,7 @@ const Quiz = () => {
               {videoQuize?.length > 0 &&
                 videoQuize.map((quiz, idx) => (
                   <div className="quiz" key={quiz?.id}>
-                    <h4 className="question">
+                    <h4 className="question font-semibold text-md">
                       Quiz {idx + 1} - {quiz?.question}
                     </h4>
                     <form className="quizOptions">
@@ -157,7 +157,7 @@ const Quiz = () => {
             <button
               onClick={onSubmitQuize}
               type="button"
-              className="px-4 py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95 "
+              className="px-4 font-bold py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95 "
             >
               Submit
             </button>

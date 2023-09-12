@@ -18,7 +18,7 @@ const AdminNav = () => {
           <img className="h-12" src={logo} alt="." />
         </Link>
         <div className="flex items-center gap-3">
-          <h2 className="font-bold">Admin</h2>
+          <h2 className="font-bold text-black">Admin</h2>
           <button
             onClick={handleLogout}
             className="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium"

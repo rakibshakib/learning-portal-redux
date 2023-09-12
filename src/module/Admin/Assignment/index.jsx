@@ -20,12 +20,15 @@ const Assignment = () => {
     deleteSuccess && toast.success("Assignment Deleted Successfully");
     isError && toast.warn("Assignment Deleting Failed");
   }, [deleteSuccess, isError]);
-  
+
   return (
     <section className="py-6 bg-primary">
       {(isLoading || deleteLoading) && <Loading />}
       <div className="mx-auto max-w-full px-5 lg:px-20">
-        <div className="px-3 py-20 bg-opacity-10">
+        <div className="px-3  bg-opacity-10">
+          <h4 className="mt-2 text-xl font-extrabold text-black border-b-2 mb-2">
+            Assignments List
+          </h4>
           <div className="flex justify-end">
             <div className="flex">
               <button
@@ -39,7 +42,7 @@ const Assignment = () => {
               </button>
             </div>
           </div>
-          <div className=" mt-4">
+          <div className="text-black mt-4">
             <table className="divide-y-1 text-base divide-gray-600 w-full">
               <thead>
                 <tr>
