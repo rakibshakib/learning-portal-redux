@@ -1,4 +1,12 @@
-### Introducing our innovative Online Learniverse Portal a dynamic platform designed to transform education. Tailored for both Students and Admins as a tutor, this solution offers interactive learning experiences, seamless content management. From video-based lessons and quizzes to assignment submissions and leaderboards 
+### Introducing our innovative Online Learniverse Portal a dynamic platform designed to transform education. Tailored for both Students and Admins as a tutor, this solution offers interactive learning experiences, seamless content management. From video-based lessons and quizzes to assignment submissions and leaderboards.
+
+- Programming Language: Javascript, TypeScript 
+- Run Time: Node.js
+- Database: MongoDB (NoSQL Database) 
+
+- Front-end Development: React.js, HTML, CSS, Axios,
+- Back-end Development: TypeScript, Express.js, Mongoose, 
+- Development Tools: Visual Studio Code, Github, Compass as Database GUI 
 
 Some Screenshot are provided.
 ## 1. Home Page (Admin) 
